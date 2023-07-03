@@ -9,27 +9,74 @@
         <meta name="viewport"
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
         <link rel="stylesheet" href="//unpkg.com/docsify/lib/themes/vue.css">
+        
     </head>
     
     <body>
         <div id="app"></div>
         <script>
         window.$docsify = {
-  "name": "disnescript",
-  "repo": "",
-  "loadSidebar": true,
-  "auto2top": true,
-  "homepage": "HOME.md",
-  "plantuml": {
-    "skin": "classic"
-  },
-  "stylesheet": "//unpkg.com/docsify/lib/themes/vue.css",
-  "alias": {
-    "/.*/_sidebar.md": "/_sidebar.md"
-  },
-  "supportSearch": true
-};
+          "name": "disnescript",
+          "repo": "",
+          "loadSidebar": true,
+          "auto2top": true,
+          "homepage": "HOME.md",
+          "plantuml": {
+            "skin": "classic"
+          },
+          "stylesheet": "//unpkg.com/docsify/lib/themes/vue.css",
+          "alias": {
+            "/.*/_sidebar.md": "/_sidebar.md"
+          },
+          "supportSearch": true
+        };
+        
         </script>
+          <style>
+              body {
+                  font-family: Arial, sans-serif;
+                  margin: 0;
+                  padding: 20px;
+              }
+      
+              textarea {
+                width: 50%;
+                height: 900px;
+                padding: 10px;
+                font-size: 14px;
+                border: 1px solid #000;
+                margin-left: 20%;
+              }
+      
+              button {
+                  background-color: #4CAF50;
+                  color: white;
+                  border: none;
+                  padding: 10px 20px;
+                  text-align: center;
+                  text-decoration: none;
+                  display: inline-block;
+                  font-size: 16px;
+                  margin-top: 10px;
+                  margin-left: auto;
+                  cursor: pointer;
+              }
+      
+              pre {
+                  background-color: #f5f5f5;
+                  padding: 10px;
+                  border: 1px solid #ccc;
+                  white-space: pre-wrap;
+                  margin-left: 20%;
+              }
+        </style>
+        
+        <textarea id="code-input"></textarea>
+        <button id="run-button">Run Code</button>
+        <pre id="output"></pre>
+    
+        <script src="script.js"></script>
+    
         <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
         <script src="//unpkg.com/docsify-plantuml/dist/docsify-plantuml.min.js"></script>
         <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/zoom-image.min.js"></script>
