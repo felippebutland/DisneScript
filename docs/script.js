@@ -40,8 +40,6 @@ window.onload = function() {
   runButton.addEventListener('click', function() {
       // Clear the output
       output.innerHTML = '';
-
-      try {
         const REGEX = {
           TYPES_DEFIN: "\\b(NUM|VIRNUM|PAL|SIMNAO)\\b",
           REP: "\\b(REP)\\b",
@@ -206,32 +204,42 @@ window.onload = function() {
                     "Position: ",
                     current_token.position
                   );
-                  return false;
+                  return {
+                    values: {
+                      "Error: Unexpected token":
+                      current_token.value,
+                      "Position: ":
+                      current_token.position
+                    },
+                    false: false,
+                  }
                 }
               }
             } else {
-              console.log("Error: Invalid symbol in the stack", current_symbol);
-              return false;
+              return {
+                values: {
+                  "Error: Invalid symbol in the stack": current_symbol
+                },
+                false: false,
+              }
             }
           }
         
           if (stack.length === 0) {
             console.log("\n\nEste código é válido!");
             return {
-              "Pilha:":
-              stack,
-              "\nSimbolo atual:":
-              current_symbol,
-              "\nSimbolo recebido: ":
-              current_token.token,
-              "Valor: ":
-              current_token.value,
-              "Posicao:":
-              current_token.position,
-            };
+              values: {
+                values: stack,
+              },
+              true: true
+            }
           } else {
-            console.log("Error: Syntax analysis failed.");
-            return false;
+            return {
+              values: {
+                Error: "Error: Syntax analysis failed."
+              },
+              false: false,
+            }
           }
         }
         
@@ -242,18 +250,16 @@ window.onload = function() {
           const tokens = tokenize(code);
           const syntax = syntax_analyzer(tokens);
 
-          // console.log(syntax)
+          const syntaxAnalyzer = JSON.stringify(syntax.values);
 
-          output.innerHTML = {
-            "token": syntax,
+          if(syntax.true){
+            output.innerHTML = "Este código é válido!"
+          } else {
+            output.innerHTML = syntaxAnalyzer.replace("{", "").replace("}", "").replace(/,/g, "<br>").replace(/"/g, "");
           }
         }
         
         main();
-    
-      } catch (error) {
-          output.innerHTML = 'Error: ' + error.message;
-      }
   });
 
     
