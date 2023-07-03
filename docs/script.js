@@ -24,7 +24,7 @@ window.onload = function() {
       console.log("Nada");
     }
 
-  }, 1000)
+  }, 3000)
 
   if (currentRoute === "HOME") {
     codeInput.style.display = "block";
