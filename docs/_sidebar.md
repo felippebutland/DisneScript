@@ -2,3 +2,4 @@
 * [Variables](VARIABLES)
 * [Functions](FUNCTIONS)
 * [Operators](OPERATORS)
+* [Automatos](AUTOMATOS)

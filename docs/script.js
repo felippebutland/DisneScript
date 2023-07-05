@@ -1,5 +1,4 @@
 window.onload = function() {
-  // Get references to HTML elements
   let codeInput = document.getElementById('code-input');
   let runButton = document.getElementById('run-button');
   let output = document.getElementById('output');
@@ -7,7 +6,40 @@ window.onload = function() {
   let savedCode = localStorage.getItem('savedCode');
 
   if (savedCode) {
-      codeInput.value = savedCode;
+    codeInput.value = savedCode;
+  }
+
+  if(!savedCode) {
+    codeInput.value = `
+    val1 ¬ ISTOEH NUM : 100;
+
+    qtd ¬ ISTOEH NUM: 12;
+    qtd2 ¬ ISTOEH NUM: 14;
+    qtd3 ¬ ISTOEH VIRNUM: 12,5;
+    qtd4 ¬ ISTOEH NUM: 12;
+    qtd5 ¬ ISTOEH NUM: 12;
+    qtd6 ¬ ISTOEH NUM: '12';
+
+    ENQ (qtd >= 0) «
+
+      func: (qtd1) «
+        qtd: "Errou";
+      »;
+
+      DUVIDA ( val1 < 0 ^ val1 / qtd+1 > 0) «
+        val1: val1 * qtd * 1;
+        qtd: qtd - 1;
+      »
+      DUVIDA ( val1 = 0 + PARANUM(5) ) «
+        qtd: "Errou";
+      »
+      DUVIDA (val1 > 0 ) «
+        val1: PARAVIRNUM(val1/qtd);
+        qtd: qtd - 1;
+      »
+
+      IMPRIMIR("QTD", qtd, "val1", val1);
+    »`
   }
 
   codeInput.addEventListener('input', function() {
@@ -18,13 +50,13 @@ window.onload = function() {
   let currentRoute = window.location.href.split('/').reverse()[0];
 
   setTimeout(function() {
-    if(codeInput.value === "") {
-      window.location.reload();
-    } else {
-      console.log("Nada");
-    }
-
-  }, 3000)
+    if(output.innerHTML !== '') {
+      setTimeout(function() {
+        output.innerHTML = '';  
+        window.location.reload();
+      }, 10000);
+    } 
+  }, 3000);
 
   if (currentRoute === "HOME") {
     codeInput.style.display = "block";
@@ -36,9 +68,7 @@ window.onload = function() {
     output.style.display = "none";
   }
 
-  // Add click event listener to the run button
   runButton.addEventListener('click', function() {
-      // Clear the output
       output.innerHTML = '';
         const REGEX = {
           TYPES_DEFIN: "\\b(NUM|VIRNUM|PAL|SIMNAO)\\b",
