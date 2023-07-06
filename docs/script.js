@@ -56,7 +56,7 @@ window.onload = function() {
         window.location.reload();
       }, 10000);
     } 
-  }, 3000);
+  }, 1000);
 
   if (currentRoute === "HOME") {
     codeInput.style.display = "block";
