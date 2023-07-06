@@ -1,7 +1,0 @@
-# Overview
-
-* [**Overview**](README.md)
-
----
-
----
